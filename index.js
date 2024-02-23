@@ -86,3 +86,71 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+
+// The total number of months included in dataset. 
+  //  totalMonths variable
+    let totalMonths = 0;
+  // Loop through each record in dataset
+  for (let i = 0; i < finances.length; i++) {
+    
+    // Increment totalMonths by 1 for each record
+    totalMonths++;
+    }
+  // Output total number of months included in dataset
+  console.log("Total number of months included in dataset:", totalMonths);
+
+// The net total amount of Profit/Losses over entire period. 
+  // netProfitLoss variable
+    let netProfitLoss = 0;
+
+  // Loop through records in dataset
+    for (let i = 0; i < finances.length; i++) {
+    // Add amount value of current record to netProfitLoss
+    netProfitLoss += finances[i][1];
+      }
+  // Output net total amount over entire period
+  console.log("Net total amount over entire period:", netProfitLoss);
+
+
+// The average of changes in Profit/Losses over entire period. 
+  // Initialize totalChange variable
+    let totalChange = 0;
+  // Loop through each record in dataset starting from second record
+    for (let i = 1; i < finances.length; i++) {
+     // Calculate monthly change as (current amount - previous amount)
+      let monthlyChange = finances[i][1] - finances[i - 1][1];
+     // Add monthly change to totalChange
+      totalChange += monthlyChange;
+      }
+    // Calculate averageChange
+      let averageChange = totalChange / (finances.length - 1);
+    // Output averageChange
+      console.log("Average of changes in Profit/Losses over the entire period:", averageChange);
+
+
+// You will need to track what the total change in Profit/Losses are from month to month and then find the average. (Total/(Number of months - 1))
+// The greatest increase in Profit/Losses (date and amount) over the entire period. 
+// The greatest decrease in Profit/Losses (date and amount) over the entire period. 
+
+// Initialize variables for greatestIncrease and greatestDecrease
+let greatestIncrease = { amount: 0, date: null };
+let greatestDecrease = { amount: 0, date: null };
+
+// Loop through each record in the dataset starting from the second record
+for (let i = 1; i < finances.length; i++) {
+    // Calculate the monthly change as (current amount - previous amount)
+    let monthlyChange = finances[i][1] - finances[i - 1][1];
+        // Check if monthly change is the greatest increase
+    if (monthlyChange > greatestIncrease.amount) {
+        greatestIncrease.amount = monthlyChange;
+        greatestIncrease.date = finances[i][0];
+    }
+        // Check if monthly change is the greatest decrease
+    if (monthlyChange < greatestDecrease.amount) {
+        greatestDecrease.amount = monthlyChange;
+        greatestDecrease.date = finances[i][0];
+    }
+}
+// Output greatestIncrease and greatestDecrease
+console.log("Greatest increase in Profit/Losses:", greatestIncrease);
+console.log("Greatest decrease in Profit/Losses:", greatestDecrease);
